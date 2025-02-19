@@ -1,6 +1,3 @@
-%TAG !rs! tag:yaml.org,2002:rust/object:
----
-
 definitions:
   Trunk:
     type: object
