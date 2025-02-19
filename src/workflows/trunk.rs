@@ -1,13 +1,20 @@
-use regex::Regex;
+use crate::validators::ticket_id::Tracker;
 use crate::parser::Parser;
 use crate::validation::Validation;
 
-pub struct Config<'a> {
-    pattern: &'a str
+struct TicketId {
+    tracker: Tracker,
+    api_url: String,
+    api_token: String
 }
 
-pub struct Trunk<'a> {
-    config: Config<'a>
+pub struct Config {
+    pattern: String,
+    ticket_id: Option<TicketId>
+}
+
+pub struct Trunk {
+    config: Config
 }
 
 pub enum Error {
@@ -25,7 +32,7 @@ pub enum Branch<'a> {
     Pattern(&'a str)
 }
 
-impl<'a> Parser<'a> for Trunk<'a> {
+impl<'a> Parser<'a> for Trunk {
     type Ast = Branch<'a>;
     type ParserError = Error;
 

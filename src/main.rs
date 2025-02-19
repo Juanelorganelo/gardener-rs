@@ -2,6 +2,7 @@ mod parser;
 mod workflows;
 mod vcs;
 mod cli;
+mod validators;
 mod validation;
 
 use cli::Cli;
