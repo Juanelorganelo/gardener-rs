@@ -1,0 +1,38 @@
+%TAG !rs! tag:yaml.org,2002:rust/object:
+---
+
+definitions:
+  Trunk:
+    type: object
+    properties:
+      main_branch: string
+      work_branches:
+        oneOf:
+          - type: object
+            properties:
+              jira_id:
+                $ref: '#/definitions/JiraId'
+          - type: object
+            properties:
+              pattern: string
+
+  JiraId:
+    type: object
+    properties:
+      format: ({id})
+      api_url: string
+      api_token: string
+
+type: object
+
+properties:
+  version:
+    oneOf:
+      - number
+      - string
+  workflows:
+    type: object
+    properties:
+      trunk:
+        $ref: '#/definitions/Trunk'
+required: [version]
