@@ -19,22 +19,13 @@ pub enum Preset {
     Unknown,
 }
 
-// We need this to be able to do default_value = Preset::Trunk
-impl IntoResettable<OsStr> for Preset {
-    fn into_resettable(self) -> Resettable<OsStr> {
-        match self {
-            Preset::GitFlow => Resettable::Value(OsStr::from(GIT_FLOW)),
-            Preset::Trunk => Resettable::Value(OsStr::from(TRUNK)),
-            Preset::Unknown => Resettable::Reset
-        }
-    }
-}
-
 #[derive(Parser)]
 #[command(version, about)]
 pub struct Cli {
-    #[arg(value_enum, short, long, default_value = Preset::Trunk)]
+    #[arg(value_enum, short, long, default_value_t = Preset::Trunk)]
     preset: Preset,
+    #[arg(short, long, default_value_t = false)]
+    ignore: bool
 }
 
 
