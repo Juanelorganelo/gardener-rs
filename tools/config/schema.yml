@@ -10,16 +10,18 @@ definitions:
         oneOf:
           - type: object
             properties:
-              jira_id:
-                $ref: '#/definitions/JiraId'
+              ticket_id:
+                $ref: '#/definitions/TicketId'
           - type: object
             properties:
               pattern: string
 
-  JiraId:
+  TicketId:
     type: object
     properties:
-      format: ({id})
+      tracker:
+        type: string
+        enum: [jira]
       api_url: string
       api_token: string
 
