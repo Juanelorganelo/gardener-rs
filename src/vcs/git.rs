@@ -16,9 +16,9 @@ pub enum Error {
 impl Vcs for Git {
     type Error = Error;
 
-    async fn detect() -> Option<Box<Self>> {
+    async fn detect() -> Option<Self> {
         if Path::new(".git").exists() {
-            Some(Box::new(Git))
+            Some(Git)
         } else {
             None
         }
